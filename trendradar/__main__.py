@@ -927,7 +927,7 @@ class NewsAnalyzer:
         now = self.ctx.get_time()
         print(f"当前北京时间: {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
-        if not self.ctx.config["ENABLE_CRAWLER"]:
+        if not self.ctx.config["ENABLE_CRAWLER"] and not self.ctx.config.get("RSS", {}).get("ENABLED", False):
             print("爬虫功能已禁用（ENABLE_CRAWLER=False），程序退出")
             return False
 
@@ -946,6 +946,10 @@ class NewsAnalyzer:
 
     def _crawl_data(self) -> Tuple[Dict, Dict, List]:
         """执行数据爬取"""
+        # NahaLabs RSS-only pilot: disabling hotlists must not disable RSS.
+        if not self.ctx.config["ENABLE_CRAWLER"]:
+            print("Hotlist collector disabled; continuing RSS-only pipeline")
+            return {}, {}, []
         ids = []
         domain_rules = {}
         for platform in self.ctx.platforms:

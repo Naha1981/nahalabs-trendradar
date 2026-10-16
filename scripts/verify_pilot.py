@@ -24,3 +24,10 @@ config=load_config()
 groups,_,_=load_frequency_words()
 assert len(groups)==2
 print('RSS-only import/config/keyword guardrails PASS; AI/MCP dependencies absent')
+
+# Exercise the actual startup gate without fetching any feeds.
+analyzer=NewsAnalyzer(config)
+assert analyzer._initialize_and_check_config()
+assert analyzer._crawl_data()==({}, {}, [])
+analyzer.ctx.cleanup()
+print('RSS-only startup and zero hotlist calls PASS')
