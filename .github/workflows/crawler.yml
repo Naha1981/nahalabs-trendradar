@@ -21,15 +21,15 @@ jobs:
           python-version: '3.12'
       - name: Install RSS-only runtime (no AI or MCP)
         run: python -m pip install --disable-pip-version-check -r requirements-pilot.txt
-      - name: Verify private, no-cost pilot guardrails
-        run: python scripts/verify_pilot.py
+      - name: Verify RSS-only pilot guardrails
+        run: python -m scripts.verify_pilot
       - name: Collect RSS and match keywords
         env:
           GITHUB_ACTIONS: 'true'
         run: python -m trendradar
       - name: Verify generated reports and freshness
-        run: python scripts/verify_report.py
-      - name: Keep private report artifact
+        run: python -m scripts.verify_report
+      - name: Keep public-news report artifact
         uses: actions/upload-artifact@v4
         with:
           name: trendradar-report
