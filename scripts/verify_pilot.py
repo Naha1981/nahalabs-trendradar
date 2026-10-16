@@ -8,6 +8,7 @@ assert c['platforms']['enabled'] is False and c['platforms']['sources']==[]
 assert c['rss']['enabled'] is True and len(c['rss']['feeds'])==12
 assert c['rss']['freshness_filter']=={'enabled':True,'max_age_days':3}
 assert c['filter']['method']=='keyword'
+assert c['report']['mode']=='daily'  # current mode requires upstream hotlist history
 assert c['notification']['enabled'] is False
 assert not any(v for ch in c['notification']['channels'].values() for v in ch.values())
 assert c['ai_analysis']['enabled'] is False and c['ai_translation']['enabled'] is False

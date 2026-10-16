@@ -9,3 +9,5 @@ Only crawler workflow remains. No Pages, Cloudflare, webhook, Docker publication
 Schedule:05:17/11:17/16:17UTC (07:17/13:17/18:17SAST). Six-minute job ceiling. Public standard ubuntu-latest runners selected for free Actions compute. Do not switch to paid/larger runners. Feed availability can change; partial source failures must be reported rather than called full source coverage.
 
 Upstream compatibility patch: platforms.enabled=false no longer exits before RSS; hotlist collector explicitly skipped. Preflight exercises the startup gate without any network collection.
+
+Report mode is daily: upstream current mode requires hotlist history and fails when only RSS is enabled. Each fresh-runner snapshot summarizes the fetched RSS items.

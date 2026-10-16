@@ -52,7 +52,7 @@ rss:
     name: TechCentral
     url: https://techcentral.co.za/feed/
 report:
-  mode: current
+  mode: daily
   display_mode: keyword
   sort_by_position_first: false
   rank_threshold: 5
