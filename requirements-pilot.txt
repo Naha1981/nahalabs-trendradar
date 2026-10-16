@@ -1,0 +1,4 @@
+requests==2.33.0
+pytz==2026.1
+PyYAML==6.0.3
+feedparser==6.0.12

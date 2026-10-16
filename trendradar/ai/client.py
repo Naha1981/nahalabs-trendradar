@@ -9,7 +9,9 @@ AI 客户端模块
 import os
 from typing import Any, Dict, List
 
-from litellm import completion
+# NahaLabs pilot: keep the optional AI dependency unloaded for RSS-only runs.
+# AI calls fail closed unless the optional component is explicitly installed.
+
 
 
 class AIClient:
@@ -100,7 +102,8 @@ class AIClient:
             if key not in params:
                 params[key] = value
 
-        # 调用 LiteLLM
+        # NahaLabs pilot: disabled AI never imports the optional dependency.
+        from litellm import completion
         response = completion(**params)
 
         # 提取响应内容

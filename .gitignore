@@ -1,0 +1,6 @@
+output/
+index.html
+__pycache__/
+*.pyc
+.venv/
+.env
